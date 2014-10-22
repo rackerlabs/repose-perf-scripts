@@ -7,10 +7,13 @@ The load_configs script loads the configuration files located in the specified [
 ./load_configs.sh rate-limiting 123.456.789 123.123.123
 
 Before: 
-      <node id="repose_node1" hostname="{host1}" http-port="8080"/>
-      <node id="repose_node2" hostname="{host2}" http-port="8080"/>
-
+```
+<node id="repose_node1" hostname="{host1}" http-port="8080"/>
+<node id="repose_node2" hostname="{host2}" http-port="8080"/>
+```
 
 After:
-      <node id="repose_node1" hostname="123.456.789" http-port="8080"/>
-      <node id="repose_node2" hostname=" 123.123.123" http-port="8080"/>
+```
+<node id="repose_node1" hostname="123.456.789" http-port="8080"/>
+<node id="repose_node2" hostname=" 123.123.123" http-port="8080"/>
+```
