@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#cp -r configs/$1/* /etc/repose/
+cp -r configs/$1/* /etc/repose/
 
 for ((i=2;i<=$#;i++))
 do
