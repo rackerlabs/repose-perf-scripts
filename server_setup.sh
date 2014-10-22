@@ -64,35 +64,4 @@ app.post('/*', function(req, res){
 app.listen(8181);
 " > ~/mock.js
 
-
-
-echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-
-<system-model xmlns=\"http://docs.rackspacecloud.com/repose/system-model/v2.0\">
-  <repose-cluster id=\"repose\">
-    <nodes>
-      <node id=\"repose_node1\" hostname=\""$1"\" http-port=\"8080\"/>
-      <node id=\"repose_node2\" hostname=\""$2"\" http-port=\"8080\"/>
-    </nodes>
-    <filters>
-      <filter name=\"rate-limiting\" />
-    </filters>
-    <destinations>
-      <endpoint id=\"open_repose\" protocol=\"http\" hostname=\"localhost\" root-path=\"/\" port=\"8181\" default=\"true\"/>
-    </destinations>
-  </repose-cluster>
-</system-model>
-" > /etc/repose/system-model.cfg.xml 
-
-
-sed -i.bak 's/MINUTE/SECOND/g' /etc/repose/rate-limiting.cfg.xml
-sed -i.bak 's/1000/2000/g' /etc/repose/rate-limiting.cfg.xml
-sed -i.bak 's/10/1000/g' /etc/repose/rate-limiting.cfg.xml
-
-sed -i.bak 's/false/true/g' /etc/repose/dist-datastore.cfg.xml
-sed -i.bak '/allow host=/d' /etc/repose/dist-datastore.cfg.xml
-
-
-sed -i.bak "s/-jar $REPOSE_JAR -c $CONFIG_DIRECTORY/-verbose:gc -Xloggc:\/tmp\/gc.log ${*:3} -jar $REPOSE_JAR -c $CONFIG_DIRECTORY/" /etc/init.d/repose-valve
-
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
