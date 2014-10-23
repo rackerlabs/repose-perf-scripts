@@ -1,5 +1,5 @@
 ##Server Setup:
-The server_setup script installs Repose for Debian or CentOS by automatically detecting which OS is running. It also creates and starts a simple mock origin service.
+The server_setup script installs Repose for Debian or CentOS by automatically detecting which OS is running. It also creates and starts a simple mock origin service and installs New Relic. However, the license_key in /root/newrelic/newrelic.yml needs to be set.
 
 ##Load Configs:
 The load_configs script loads the configuration files located in the specified [configs folder](https://github.com/rackerlabs/repose-perf-scripts/tree/setup_script/configs/rate-limiting). It also populates the hostnames for the nodes in system-model.cfg.xml. The script replaces {host#} the given hostnames/IP addresses. For example:
