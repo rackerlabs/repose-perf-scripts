@@ -67,3 +67,8 @@ app.listen(8181);
 node mock.js start &
 
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+sudo mkdir /root/newrelic
+cp new-relic/newrelic.yml /root/newrelic
+cp new-relic/newrelic.jar /root/newrelic
+sed -i.bak "s/-jar $REPOSE_JAR -c $CONFIG_DIRECTORY/-javaagent:/path/to/newrelic.jar -jar $REPOSE_JAR -c $CONFIG_DIRECTORY/" /etc/init.d/repose-valve
